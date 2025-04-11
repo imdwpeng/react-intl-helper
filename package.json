@@ -1,0 +1,74 @@
+{
+  "name": "react-intl-helper",
+  "displayName": "React Intl Helper",
+  "version": "1.0.0",
+  "description": "react-intl 国际化提示插件",
+  "keywords": ["react-intl", "i18n"],
+  "publisher": "dongweipeng",
+  "repository": "https://github.com/imdwpeng/react-intl-helper",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "icon.png",
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      },
+      {
+        "id": "typescript",
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "configuration": {
+			"title": "react-intl-helper配置",
+			"properties": {
+				"react-intl-helper.configPath": {
+					"type": "string",
+					"default": "src/locale",
+					"description": "国际化配置文件的地址"
+				},
+				"react-intl-helper.suffix": {
+					"type": "string",
+					"default": ".json",
+					"description": "国际化文件的后缀(排除当前文件夹下面其它类型文件)"
+				}
+			}
+		}
+  },
+  "scripts": {
+		"vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npm run compile && vsce package",
+    "publish": "npm run compile && vsce package && vsce publish -p dongweipeng"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.0",
+    "@types/vscode": "^1.50.0",
+    "@vscode/vsce": "^2.15.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^8.1.0",
+    "vscode-languageserver": "^8.1.0",
+    "vscode-languageserver-textdocument": "^1.0.8"
+  }
+}
