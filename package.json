@@ -1,7 +1,7 @@
 {
   "name": "react-intl-helper",
   "displayName": "React Intl Helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react-intl 国际化提示插件",
   "keywords": ["react-intl", "i18n"],
   "publisher": "dongweipeng",
@@ -21,22 +21,6 @@
     "onLanguage:typescriptreact"
   ],
   "contributes": {
-    "languages": [
-      {
-        "id": "javascript",
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      },
-      {
-        "id": "typescript",
-        "extensions": [
-          ".ts",
-          ".tsx"
-        ]
-      }
-    ],
     "configuration": {
 			"title": "react-intl-helper配置",
 			"properties": {
