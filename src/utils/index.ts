@@ -2,9 +2,10 @@ import * as vscode from "vscode";
 import config from "./config";
 
 const { fs } = vscode.workspace;
-const { suffix, configPath } = config;
+const { suffix,  getRelativeConfigPath } = config;
 
 let localsData: { [x: string]: any } = {};
+let tempLocalesPath: string;
 
 // 获取文件内容
 const getContent = async (localesPath: string, directory: any) => {
@@ -40,6 +41,12 @@ const getContent = async (localesPath: string, directory: any) => {
   return result;
 };
 
+const checkLocalsPath = () => {
+  const newLocalesPath = getRelativeConfigPath();
+  console.log('newLocalesPath',newLocalesPath,tempLocalesPath)
+  return newLocalesPath === tempLocalesPath;
+}
+
 // 检查是否包含国际化配置
 const checkHasLocales = async () => {
   const { workspaceFolders, fs } = vscode.workspace;
@@ -47,9 +54,10 @@ const checkHasLocales = async () => {
     return;
   }
   console.log("init react-intl-helper");
-  let result;
+  let result: any;
   for (let i = 0; i < workspaceFolders?.length; i++) {
-    const localesPath = `${workspaceFolders[i].uri.fsPath}/${configPath}`;
+    const localesPath = `${workspaceFolders[i].uri.fsPath}/${getRelativeConfigPath()}`;
+    tempLocalesPath = getRelativeConfigPath();
     console.log("localesPath: ", localesPath);
     let directory = await fs.readDirectory(vscode.Uri.file(localesPath));
 
@@ -236,6 +244,7 @@ const getWordLocation = async (key: string) => {
 export {
   localsData,
   checkHasLocales,
+  checkLocalsPath,
   getContent,
   getI18nKey,
   getTips,
